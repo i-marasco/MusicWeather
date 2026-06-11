@@ -18,16 +18,11 @@ Output:
 
 from fastapi import APIRouter
 import psycopg2
+from app.database.conn import get_connection
 
 router = APIRouter()
-def get_connection():
-    return psycopg2.connect(
-        dbname="music",
-        user="postgres",
-        password="admin",
-        host="localhost",
-        port="5432"
-    )
+conn = get_connection()
+cur = conn.cursor()
 
 @router.get("/artist")
 def get_artist(

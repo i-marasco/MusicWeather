@@ -23,17 +23,11 @@ from fastapi import APIRouter, Query
 from datetime import datetime
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from app.database.conn import get_connection
 
 router = APIRouter()
-
-def get_connection():
-    return psycopg2.connect(
-        dbname="music",
-        user="postgres",
-        password="admin",
-        host="localhost",
-        port="5432"
-    )
+conn = get_connection()
+cur = conn.cursor()
 
 @router.get("/history")
 def get_history(
