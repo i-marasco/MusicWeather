@@ -69,13 +69,19 @@ for artist_name in artists:
         genres = get_genres(artist_name)
         print(artist_name, genres)
 
+        main_genre = genres[0] if genres else None
+
         cur.execute(
             """
-            INSERT INTO "MUSIC_TRACK"."GENRES" ("ARTIST_NAME", "GENRE_LIST")
-            VALUES (%s, %s)
-            ON CONFLICT ("ARTIST_NAME") DO NOTHING;
+            INSERT INTO "MUSIC_TRACK"."GENRES"
+            ("ARTIST_NAME", "GENRE_LIST", "MAIN_GENRE")
+            VALUES (%s, %s, %s)
+            ON CONFLICT ("ARTIST_NAME")
+            DO UPDATE SET
+                "GENRE_LIST" = EXCLUDED."GENRE_LIST",
+                "MAIN_GENRE" = EXCLUDED."MAIN_GENRE"
             """,
-            (artist_name, genres)
+            (artist_name, genres, main_genre)
         )
 
         conn.commit()
