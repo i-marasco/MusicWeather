@@ -1,9 +1,8 @@
 from fastapi import APIRouter
 from datetime import date, timedelta
-from app.services.artist_ranking import generate_ranking
+from app.services.artist_ranking_services import generate_ranking
 
 router = APIRouter()
-
 
 @router.post("/weekly")
 def weekly():
