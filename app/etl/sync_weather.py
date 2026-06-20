@@ -1,3 +1,22 @@
+"""
+-------------------------------------------------------------------------------------------------
+sync_weather.py
+-------------------------------------------------------------------------------------------------
+Purpose:
+        Update weather with the Open Weather API.
+
+Source:
+        https://archive-api.open-meteo.com/v1/era5
+
+Input:
+        None
+
+Output:
+        "WEATHER"."WEATHER_HISTORY": One row inserted for every hours of the date range.
+
+Note:
+        Days already inserted are skipped.
+"""
 from datetime import datetime, timedelta, timezone
 import requests
 import os
