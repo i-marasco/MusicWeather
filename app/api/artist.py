@@ -17,28 +17,13 @@ Output:
 """
 
 from fastapi import APIRouter
-from app.db.conn import get_connection
+from app.services. artist_services import get_artist
 
 router = APIRouter()
 
 @router.get("/artist")
-def get_artist(
+def artist(
 ):
-    conn = get_connection()
+    return get_artist()
 
-    try:
-        with conn.cursor() as cur:
-            cur.execute("""
-                    SELECT "ARTIST_NAME", "LISTENED_AT", "PLAYS"
-                    FROM "MUSIC_TRACK"."ARTISTS"
-            """)
-
-            rows = cur.fetchall()
-
-    finally:
-        conn.close()
-
-    return {
-        "artists": rows
-    }
 

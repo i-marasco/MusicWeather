@@ -1,0 +1,27 @@
+"""
+
+"""
+
+from app.db.conn import get_connection
+
+
+def get_artist(
+):
+    conn = get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                    SELECT "ARTIST_NAME", "LISTENED_AT", "PLAYS"
+                    FROM "MUSIC_TRACK"."ARTISTS"
+            """)
+
+            rows = cur.fetchall()
+
+    finally:
+        conn.close()
+
+    return {
+        "artists": rows
+    }
+
