@@ -1,3 +1,20 @@
+"""
+-------------------------------------------------------------------------------------------------
+sync_weather_daily.py
+-------------------------------------------------------------------------------------------------
+Source:
+        "WEATHER"."WEATHER_HISTORY"
+
+Input:
+        None
+
+Output:
+        "WEATHER"."WEATHER_DAILY_SUMMARY": One summary row inserted for every day.
+
+Note:
+        Days already inserted are skipped.
+"""
+
 from app.db.conn import get_connection
 
 

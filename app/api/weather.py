@@ -1,8 +1,23 @@
 """
+-------------------------------------------------------------------------------------------------
+weather.py
+-------------------------------------------------------------------------------------------------
+Purpose:
+        Output top genres and genres listened per period.
 
+Source:
+        "WEATHER"."WEATHER_HISTORY"
+        "WEATHER"."WEATHER_DAILY_SUMMARY"
 
+Inputs:
+        start_date[optional]: Start date of weather retrieving.
+        end_date[optional]: End date of weather retrieving.
 
-
+Output:
+        /history:
+            Hourly weather for the period selected.
+        /daily:
+            Daily weather for the period selected.
 """
 from datetime import datetime, date
 from fastapi import APIRouter, Query
